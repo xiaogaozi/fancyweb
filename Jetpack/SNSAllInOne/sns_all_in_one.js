@@ -2,7 +2,7 @@
 // @name          SNS All in One
 // @description   Get SNS service easier.
 // @author        xiaogaozi <gaochangjian@gmail.com>
-// @version       0.0.1
+// @version       0.0.2
 // @license       GPLv3
 // ==/Jetpack==
 
@@ -62,11 +62,11 @@ html{color:#111;background:#fff}body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,co
   });
   
   /*
-   * 校内 (http://www.xiaonei.com/)
+   * 校内 (http://www.renren.com/)
    */
   jetpack.slideBar.append({
     icon: "http://s.xnimg.cn/favicon.ico",
-    url: "http://m.xiaonei.com/home.do?pf_config=2",
+    url: "http://m.renren.com/home.do?pf_config=2",
     width: 350,
     onClick: function(slider) {
       slider.contentDocument.reload();
