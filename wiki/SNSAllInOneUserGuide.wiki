@@ -1,4 +1,4 @@
-#summary SNS All in One 使用说明
+#summary SNS All in One 用户指南
 #labels Featured,Phase-Support
 
 ==概述==
