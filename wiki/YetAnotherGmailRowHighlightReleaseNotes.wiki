@@ -1,0 +1,9 @@
+#summary Yet Another Gmail Row Highlight Release Notes
+#labels Phase-Support
+
+<h1>Table of Contents</h1>
+<wiki:toc max_depth="1" />
+
+= Version 0.0.1 (Released 2009-11-24) =
+
+  * The initial version.
