@@ -2,7 +2,7 @@
 // @name          Yet Another Gmail Row Highlight
 // @description   Highlight current row which the arrow indicates.
 // @author        xiaogaozi
-// @version       0.0.1
+// @version       0.0.2
 // @license       GPLv3
 // @include       http://mail.google.tld/*
 // @include       https://mail.google.tld/*
@@ -34,12 +34,14 @@ function highlightCurrentRow()
     var canvas = $("#canvas_frame").contents();
     if (canvas.length == 0)
         return;
+    alert("2");
     var current_arrow = $("table.zt tr img[style*='visibility: visible;']", canvas);
     /*
      * If there isn't specific arrow, just get out of here.
      */
     if (current_arrow.length == 0)
         return;
+    alert("3");
 
     var current_row = current_arrow.parent().parent(); // yeah, you get it.
 
@@ -49,11 +51,13 @@ function highlightCurrentRow()
     }
     else if (previous_row.text() != current_row.text()) // the arrow has moved
     {
+        alert("4");
         previous_row.removeAttr("style");
         previous_row = current_row;
     }
     else if (previous_row.text() == current_row.text())
     {
+        alert("5");
         return;
     }
 
@@ -65,6 +69,7 @@ function highlightCurrentRow()
     // {
     //     current_row.attr("style", "background-color: rgb(255,235,134);");
     // }
+    alert("6");
     current_row.attr("style", "background-color: rgb(205,243,159);");
 }
 
@@ -74,9 +79,19 @@ function highlightCurrentRow()
 (function()
  {
      $(document).ready(function() {
-         /*
-          * Execute this function during specific time.
-          */
-         setInterval(highlightCurrentRow, 50);
+         // /*
+         //  * Execute this function during specific time.
+         //  */
+         // setInterval(highlightCurrentRow, 50);
+
+         highlightCurrentRow();
+
+         $(document).keyup(function(event) {
+             var code = event.charCode || event.keyCode;
+             if (code == 74 || code == 75)
+             {
+                 highlightCurrentRow();
+             }
+         });
      });
  })();
