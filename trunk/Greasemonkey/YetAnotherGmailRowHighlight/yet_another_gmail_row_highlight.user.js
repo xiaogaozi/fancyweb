@@ -6,7 +6,7 @@
 // @license       GPLv3
 // @include       http://mail.google.tld/*
 // @include       https://mail.google.tld/*
-// @require       http://code.jquery.com/jquery-latest.min.js
+// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js
 // ==/UserScript==
 
 /*
@@ -27,57 +27,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var previous_row = null;        // store previous row
-
-function highlightCurrentRow()
-{
-    var canvas = $("#canvas_frame").contents();
-    if (canvas.length == 0)
-        return;
-    alert("2");
-    var current_arrow = $("table.zt tr img[style*='visibility: visible;']", canvas);
-    /*
-     * If there isn't specific arrow, just get out of here.
-     */
-    if (current_arrow.length == 0)
-        return;
-    alert("3");
-
-    var current_row = current_arrow.parent().parent(); // yeah, you get it.
-
-    if (previous_row == null)   // initialize `previous_row'
-    {
-        previous_row = current_row;
-    }
-    else if (previous_row.text() != current_row.text()) // the arrow has moved
-    {
-        alert("4");
-        previous_row.removeAttr("style");
-        previous_row = current_row;
-    }
-    else if (previous_row.text() == current_row.text())
-    {
-        alert("5");
-        return;
-    }
-
-    // if (current_row.hasClass("zE")) // current mail hasn't read
-    // {
-    //     current_row.attr("style", "background-color: rgb(205,243,159);");
-    // }
-    // else if (current_row.hasClass("yO")) // current mail has read
-    // {
-    //     current_row.attr("style", "background-color: rgb(255,235,134);");
-    // }
-    alert("6");
-    current_row.attr("style", "background-color: rgb(205,243,159);");
-}
+// var previous_row = null;        // store previous row
 
 /*
- * Main function.
+ * Main function
  */
 (function()
  {
+     console.log("Yeah");
+
      $(document).ready(function() {
          // /*
          //  * Execute this function during specific time.
@@ -88,10 +46,51 @@ function highlightCurrentRow()
 
          $(document).keyup(function(event) {
              var code = event.charCode || event.keyCode;
+             console.log(code);
              if (code == 74 || code == 75)
              {
                  highlightCurrentRow();
              }
          });
      });
+
+     function highlightCurrentRow()
+     {
+         var canvas = $("#canvas_frame").contents();
+         if (canvas.length == 0)
+             return;
+     
+         var current_arrow = $("table#:pd.F tr img[style*='visibility: visible;']", canvas);
+         /*
+          * If there isn't specific arrow, just get out of here.
+          */
+         if (current_arrow.length == 0)
+             return;
+     
+         var current_row = current_arrow.parent().parent(); // Yeah, you get it.
+     
+         // if (previous_row == null)   // initialize `previous_row'
+         // {
+         //     previous_row = current_row;
+         // }
+         // else if (previous_row.text() != current_row.text()) // the arrow has moved
+         // {
+         //     previous_row.removeAttr("style");
+         //     previous_row = current_row;
+         // }
+         // else if (previous_row.text() == current_row.text())
+         // {
+         //     return;
+         // }
+     
+         // if (current_row.hasClass("zE")) // current mail hasn't read
+         // {
+         //     current_row.attr("style", "background-color: rgb(205,243,159);");
+         // }
+         // else if (current_row.hasClass("yO")) // current mail has read
+         // {
+         //     current_row.attr("style", "background-color: rgb(255,235,134);");
+         // }
+         current_row.attr("style", "background-color: rgb(205,243,159);");
+     }
  })();
